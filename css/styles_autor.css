@@ -1,0 +1,71 @@
+body {
+            font-family: Arial, sans-serif;
+            background: #f4f8fb;
+            text-align: center;
+            padding: 30px;
+        }
+        h2 {
+            color: #1a73e8;
+            margin-bottom: 20px;
+        }
+        .buscador input[type="text"] {
+            width: 40%;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+        }
+        .buscador button {
+            padding: 10px 20px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .tabla-autores {
+            max-height: 500px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            background-color: white;
+        }
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #cce0ff;
+            color: #003366;
+        }
+        a {
+            text-decoration: none;
+            color: #1a73e8;
+        }
+        .formulario {
+            margin-top: 40px;
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            text-align: left;
+        }
+        .formulario input {
+            padding: 10px;
+            margin: 5px 0;
+            width: 100%;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        .formulario button {
+            padding: 10px 20px;
+            background: #1976d2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
