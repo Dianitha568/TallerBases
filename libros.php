@@ -8,7 +8,7 @@ $sql = "SELECT * FROM Tblibro WHERE
     año_libro LIKE :buscar";
 $stmt = $conexion->prepare($sql);
 $stmt->execute(['buscar' => "%$busqueda%"]);
-$autores = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -38,20 +38,20 @@ $autores = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($autores as $autor): ?>
+                    <?php foreach ($libros as $libro): ?>
                     <tr>
-                        <td><?= $autor['isbn'] ?></td>
-                        <td><?= $autor['titulo_libro'] ?></td>
-                        <td><?= $autor['formato_libro'] ?></td>
-                        <td><?= $autor['año_libro'] ?></td>
-                        <td><?= $autor['votos_libro'] ?></td>
-                        <td><?= $autor['editorial'] ?></td>
-                        <td><?= $autor['disponible'] ?></td>
+                        <td><?= $libro['isbn'] ?></td>
+                        <td><?= $libro['titulo_libro'] ?></td>
+                        <td><?= $libro['formato_libro'] ?></td>
+                        <td><?= $libro['año_libro'] ?></td>
+                        <td><?= $libro['votos_libro'] ?></td>
+                        <td><?= $libro['editorial'] ?></td>
+                        <td><?= $libro['disponible'] ?></td>
                         <td>
-                            <a href="modificar_libro.php?id=<?= $autor['isbn'] ?>" onclick="return confirm('¿Modificar este libro?')">Modificar</a>
+                            <a href="modificar_libro.php?id=<?= $libro['isbn'] ?>" onclick="return confirm('¿Modificar este libro?')">Modificar</a>
                         </td>
                         <td>
-                            <a href="eliminar_libro.php?id=<?= $autor['isbn'] ?>" onclick="return confirm('¿Eliminar este libro?')">Eliminar</a>
+                            <a href="eliminar_libro.php?id=<?= $libro['isbn'] ?>" onclick="return confirm('¿Eliminar este libro?')">Eliminar</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -62,6 +62,7 @@ $autores = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <h2>Agregar Nuevo Autor</h2>
         <div class="formulario">
             <form action="guardar_libro.php" method="post">
+                </label>
                 <label>Titulo:
                     <input type="text" name="titulo_libro" required>
                 </label>
