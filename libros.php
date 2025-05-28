@@ -1,50 +1,21 @@
 <?php
 include 'conexion.php';
 
-// Si se envió el formulario para guardar un nuevo libro
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $isbn = $_POST['isbn'];
-    $titulo = $_POST['titulo'];
-    $formato = $_POST['formato'];
-    $paginas = $_POST['paginas'];
-    $anio = $_POST['anio'];
-    $votos = $_POST['votos'];
-    $editorial_id = $_POST['editorial'];
-
-    $sql_insert = "INSERT INTO libros (isbn, titulo, formato, paginas, año, votos, editorial) 
-                   VALUES (:isbn, :titulo, :formato, :paginas, :anio, :votos, :editorial)";
-    $stmt = $conexion->prepare($sql_insert);
-    $stmt->execute([
-        'isbn' => $isbn,
-        'titulo' => $titulo,
-        'formato' => $formato,
-        'paginas' => $paginas,
-        'anio' => $anio,
-        'votos' => $votos,
-        'editorial' => $editorial_id
-    ]);
-}
-
-// Obtener los libros con el nombre de la editorial
-$sql = "SELECT libros.*, editorial.nombre AS nombre_editorial 
-        FROM libros 
-        JOIN editorial ON libros.editorial = editorial.id";
+$busqueda = $_GET['buscar'] ?? '';
+$sql = "SELECT * FROM Tblibro WHERE 
+    titulo_libro LIKE :buscar OR 
+    formato_libro LIKE :buscar OR 
+    año_libro LIKE :buscar";
 $stmt = $conexion->prepare($sql);
-$stmt->execute();
-$libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// Obtener todas las editoriales para el select
-$sql_editorial = "SELECT id, nombre FROM editorial";
-$stmt_editorial = $conexion->prepare($sql_editorial);
-$stmt_editorial->execute();
-$editoriales = $stmt_editorial->fetchAll(PDO::FETCH_ASSOC);
+$stmt->execute(['buscar' => "%$busqueda%"]);
+$autores = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Gestión de Libros</title>
+    <title>Libros</title>
     <link rel="stylesheet" href="css/styles_autor.css">
 </head>
 <body>
@@ -54,64 +25,61 @@ $editoriales = $stmt_editorial->fetchAll(PDO::FETCH_ASSOC);
             <table>
                 <thead>
                     <tr>
-                        <th>ISBN</th>
-                        <th>Título</th>
+                        <th>Isbn</th>
+                        <th>Titulo</th>
                         <th>Formato</th>
-                        <th>Páginas</th>
-                        <th>Año</th>
+                        <th>Año Publicacion</th>
                         <th>Votos</th>
                         <th>Editorial</th>
+                        <th>Disponibles</th>
                         <th>Modificar</th>
                         <th>Eliminar</th>
+                        <th>Prestar</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($libros as $libro): ?>
+                    <?php foreach ($autores as $autor): ?>
                     <tr>
-                        <td><?= $libro['isbn'] ?></td>
-                        <td><?= $libro['titulo'] ?></td>
-                        <td><?= $libro['formato'] ?></td>
-                        <td><?= $libro['paginas'] ?></td>
-                        <td><?= $libro['año'] ?></td>
-                        <td><?= $libro['votos'] ?></td>
-                        <td><?= $libro['nombre_editorial'] ?></td>
-                        <td><a href="modificar_libro.php?isbn=<?= $libro['isbn'] ?>" onclick="return confirm('¿Modificar este libro?')">Modificar</a></td>
-                        <td><a href="eliminar_libro.php?isbn=<?= $libro['isbn'] ?>" onclick="return confirm('¿Eliminar este libro?')">Eliminar</a></td>
+                        <td><?= $autor['isbn'] ?></td>
+                        <td><?= $autor['titulo_libro'] ?></td>
+                        <td><?= $autor['formato_libro'] ?></td>
+                        <td><?= $autor['año_libro'] ?></td>
+                        <td><?= $autor['votos_libro'] ?></td>
+                        <td><?= $autor['editorial'] ?></td>
+                        <td><?= $autor['disponible'] ?></td>
+                        <td>
+                            <a href="modificar_libro.php?id=<?= $autor['isbn'] ?>" onclick="return confirm('¿Modificar este libro?')">Modificar</a>
+                        </td>
+                        <td>
+                            <a href="eliminar_libro.php?id=<?= $autor['isbn'] ?>" onclick="return confirm('¿Eliminar este libro?')">Eliminar</a>
+                        </td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
 
-        <h2>Agregar Nuevo Libro</h2>
+        <h2>Agregar Nuevo Autor</h2>
         <div class="formulario">
-            <form action="libros.php" method="post">
-                <label>ISBN:</label>
-                <input type="number" name="isbn" required>
-
-                <label>Título:</label>
-                <input type="text" name="titulo" required>
-
-                <label>Formato:</label>
-                <input type="text" name="formato" required>
-
-                <label>Páginas:</label>
-                <input type="number" name="paginas">
-
-                <label>Año:</label>
-                <input type="number" name="anio" required>
-
-                <label>Votos:</label>
-                <input type="number" name="votos" required>
-
-                <label>Editorial:</label>
-                <select name="editorial" required>
-                    <?php foreach ($editoriales as $editorial): ?>
-                        <option value="<?= $editorial['id'] ?>"><?= $editorial['nombre'] ?></option>
-                    <?php endforeach; ?>
-                </select>
-
-                <br><br>
+            <form action="guardar_libro.php" method="post">
+                <label>Titulo:
+                    <input type="text" name="titulo_libro" required>
+                </label>
+                <label>Formato:
+                    <input type="text" name="formato_libro" required>
+                </label>
+                <label>Año:
+                    <input type="number" name="año_libro" required>
+                </label>
+                <label>Votos:
+                    <input type="number" name="votos_libro" required>
+                </label>
+                <label>Editorial:
+                    <input type="text" name="editorial" required>
+                </label>
+                <label>Disponible:
+                    <input type="number" name="disponible" required>
+                </label>
                 <button type="submit">Guardar</button>
             </form>
         </div>
