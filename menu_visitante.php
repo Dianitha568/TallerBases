@@ -1,6 +1,6 @@
 <?php
 include 'conexion.php';
-$autores = $conexion->query("SELECT * FROM Autor")->fetchAll(PDO::FETCH_ASSOC);
+$autores = $conexion->query("SELECT * FROM TbAutor")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>

@@ -1,18 +1,3 @@
-<?php
-include 'conexion.php';
-$autores = $conexion->query("SELECT * FROM Autor")->fetchAll(PDO::FETCH_ASSOC);
-
-$busqueda = $_GET['buscar'] ?? '';
-$sql = "SELECT * FROM autor WHERE 
-    nombre LIKE :buscar OR 
-    pais LIKE :buscar OR 
-    idioma LIKE :buscar";
-$stmt = $conexion->prepare($sql);
-$stmt->execute(['buscar' => "%$busqueda%"]);
-$autores = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
-
-?>
 
 <!DOCTYPE html>
 <html lang="es">
