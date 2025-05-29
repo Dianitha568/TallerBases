@@ -15,11 +15,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registrar'])) {
 }
 
 // Obtener lista de préstamos
+
+
 $sql = "SELECT 
             p.id_prestamo,
             l.isbn,
             l.titulo_libro,
-            a.nom_autor,
+            COALESCE(a.nom_autor, 'No asignado') AS nom_autor,
             u.nombre_usuario,
             p.fecha_prestamo,
             p.fecha_devolucion
@@ -28,6 +30,8 @@ $sql = "SELECT
         LEFT JOIN Tb_AutorLibro al ON al.libro_isbn = l.isbn
         LEFT JOIN TbAutor a ON al.autor_id = a.id_autor
         INNER JOIN TbUsuario u ON p.id_usuario = u.id_usuario";
+
+
 
 // Obtener libros
 $sql_libros = "SELECT isbn, titulo_libro FROM Tblibro";
@@ -51,70 +55,19 @@ $prestamos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <title>Gestión de Préstamos</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 30px;
-            background-color: #f0f0f0;
-        }
-        h1, h2 {
-            color: #333;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-        }
-        th, td {
-            padding: 10px;
-            border: 1px solid #ccc;
-        }
-        th {
-            background: #007bff;
-            color: white;
-        }
-        form {
-            margin-bottom: 30px;
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-        }
-        input, select {
-            padding: 6px;
-            margin: 5px;
-        }
-        .actions a {
-            margin: 0 5px;
-            text-decoration: none;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
-        }
-        .edit-btn {
-            background-color: #f39c12;
-        }
-        .delete-btn {
-            background-color: #e74c3c;
-        }
-        .buscar-btn {
-            background-color: #3498db;
-        }
-        .btn-submit {
-            background-color: #2ecc71;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            cursor: pointer;
-        }
-    </style>
-
-
-
+    <link rel="stylesheet" href="css/styles_prestamo.css">
+    
 
 </head>
 <body>
 
 <h1>Listado de Préstamos</h1>
+
+ <div class="container">
+        <div class="butoneria">
+            <a href="menu_bibliotecario.php" class="menu-button">Menu Bibliotecario</a>
+        </div>
+    </div>
 
 <table>
     <thead>

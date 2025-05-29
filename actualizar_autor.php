@@ -4,14 +4,14 @@ include 'conexion.php';
 $id = $_POST['id_autor'];
 $nombre = $_POST['nom_autor'];
 $pais = $_POST['pais_autor'];
-$fecha_nac = $_POST['fec_nac_autor'];
+$fecha_nac = $_POST['f_publicacion'];
 $email = $_POST['email_autor'];
 $idioma = $_POST['idioma_autor'];
 
 $sql = "UPDATE TbAutor 
         SET nom_autor = :nombre, 
             pais_autor = :pais, 
-            fec_nac_autor = :fecha, 
+            f_publicacion = :fecha, 
             email_autor = :email, 
             idioma_autor = :idioma 
         WHERE id_autor = :id";

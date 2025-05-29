@@ -40,10 +40,7 @@ if (!$autor) {
             </label>
             <label>País:
                 <input type="text" name="pais_autor" value="<?= $autor['pais_autor'] ?>" required>
-            </label>
-            <label>Fecha de Nacimiento:
-                <input type="date" name="fec_nac_autor" value="<?= $autor['fec_nac_autor'] ?>" required>
-            </label>
+            </label>            
             <label>Email:
                 <input type="email" name="email_autor" value="<?= $autor['email_autor'] ?>">
             </label>

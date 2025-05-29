@@ -36,7 +36,6 @@ $autores = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>País</th>
-                        <th>Fecha de Nacimiento</th>
                         <th>Email</th>
                         <th>Idioma</th>
                         <th>Modificar</th>
@@ -50,7 +49,6 @@ $autores = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td><?= $autor['id_autor'] ?></td>
                         <td><?= $autor['nom_autor'] ?></td>
                         <td><?= $autor['pais_autor'] ?></td>
-                        <td><?= $autor['fec_nac_autor'] ?></td>
                         <td><?= $autor['email_autor'] ?></td>
                         <td><?= $autor['idioma_autor'] ?></td>
                         <td>
@@ -73,9 +71,6 @@ $autores = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </label>
                 <label>País:
                     <input type="text" name="pais_autor" required>
-                </label>
-                <label>Fecha de Nacimiento:
-                    <input type="date" name="fec_nac_autor" required>
                 </label>
                 <label>Email:
                     <input type="email" name="email_autor">
