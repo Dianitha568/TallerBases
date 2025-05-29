@@ -27,7 +27,7 @@ if (!$autor) {
 <head>
     <meta charset="UTF-8">
     <title>Modificar Autor</title>
-    <link rel="stylesheet" href="css/styles_autor.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div class="container">
