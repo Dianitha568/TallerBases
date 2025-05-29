@@ -19,6 +19,13 @@ $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="css/styles_autor.css">
 </head>
 <body>
+
+    <div class="container">
+        <div class="butoneria">
+            <a href="menu_bibliotecario.php" class="menu-button">Menu Bibliotecario</a>
+        </div>
+    </div>
+
     <div class="container">
         <h2>Lista de Libros</h2>
         <div class="tabla-autores">

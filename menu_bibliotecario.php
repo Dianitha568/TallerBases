@@ -16,8 +16,8 @@
         <a href="libros.php" class="menu-button">Gestion Libros</a>
         <a href="autores.php" class="menu-button">Gestion Autores</a>
         <a href="usuarios.php" class="menu-button">Gestion Usuario</a>
-        <a href="form_prestamo.php" class="menu-button">Gestion Préstamo</a>
-        <a href="form_reportes.php" class="menu-button">Reportes</a>
+        <a href="prestamos.php" class="menu-button">Gestion Préstamo</a>
+        <a href="reportes.php" class="menu-button">Reportes</a>
     </div>
 
 

@@ -1,6 +1,7 @@
 <?php
 include 'conexion.php';
 
+
 $busqueda = $_GET['buscar'] ?? '';
 $sql = "SELECT * FROM TbAutor WHERE 
     nom_autor LIKE :buscar OR 
@@ -19,6 +20,13 @@ $autores = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="css/styles_autor.css">
 </head>
 <body>
+
+    <div class="container">
+        <div class="butoneria">
+            <a href="menu_bibliotecario.php" class="menu-button">Menu Bibliotecario</a>
+        </div>
+    </div>
+
     <div class="container">
         <h2>Lista de Autores</h2>
         <div class="tabla-autores">
