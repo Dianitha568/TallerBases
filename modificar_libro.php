@@ -2,8 +2,8 @@
 include 'conexion.php';
 
 // Validar si se recibió un ISBN
-if (!isset($_GET['id'])) {
-    echo "ID de libro no proporcionado.";
+if (!isset($_GET['id']) || empty($_GET['id'])) {
+    echo "❌ ID de libro no proporcionado.";
     exit;
 }
 
@@ -16,7 +16,7 @@ $stmt->execute(['isbn' => $isbn]);
 $libro = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$libro) {
-    echo "Libro no encontrado.";
+    echo "❌ Libro no encontrado.";
     exit;
 }
 ?>
@@ -32,7 +32,7 @@ if (!$libro) {
     <div class="container">
         <h2>Modificar Libro</h2>
         <form action="actualizar_libro.php" method="post">
-            <input type="hidden" name="isbn" value="<?= $libro['isbn'] ?>">
+            <input type="hidden" name="isbn" value="<?= htmlspecialchars($libro['isbn']) ?>">
             
             <label>Título:
                 <input type="text" name="titulo_libro" value="<?= htmlspecialchars($libro['titulo_libro']) ?>" required>
@@ -41,19 +41,21 @@ if (!$libro) {
                 <input type="text" name="formato_libro" value="<?= htmlspecialchars($libro['formato_libro']) ?>" required>
             </label>
             <label>Año:
-                <input type="number" name="año_libro" value="<?= $libro['año_libro'] ?>" required>
+                <input type="number" name="año_libro" value="<?= (int)$libro['año_libro'] ?>" required>
             </label>
             <label>Votos:
-                <input type="number" name="votos_libro" value="<?= $libro['votos_libro'] ?>" required>
+                <input type="number" name="votos_libro" value="<?= (int)$libro['votos_libro'] ?>" required>
             </label>
             <label>Editorial:
                 <input type="text" name="editorial" value="<?= htmlspecialchars($libro['editorial']) ?>" required>
             </label>
             <label>Disponibles:
-                <input type="number" name="disponible" value="<?= $libro['disponible'] ?>" required>
+                <input type="number" name="disponible" value="<?= (int)$libro['disponible'] ?>" required>
             </label>
             <button type="submit">Actualizar</button>
         </form>
+        <br>
+        <a href="libros.php">Volver a la lista</a>
     </div>
 </body>
 </html>

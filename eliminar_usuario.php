@@ -3,10 +3,17 @@ include 'conexion.php';
 
 $id = $_GET['id'] ?? null;
 
-if ($id) {
+if ($id && is_numeric($id)) {
     $stmt = $conexion->prepare("DELETE FROM TbUsuario WHERE id_usuario = :id");
-    $stmt->execute(['id' => $id]);
-}
+    $resultado = $stmt->execute(['id' => $id]);
 
-header('Location: usuarios.php');
-exit;
+    if ($resultado) {
+        header('Location: usuarios.php?mensaje=eliminado');
+        exit;
+    } else {
+        echo "Error al eliminar el usuario.";
+    }
+} else {
+    echo "ID no válido.";
+}
+?>

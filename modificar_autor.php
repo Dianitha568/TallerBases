@@ -2,12 +2,12 @@
 include 'conexion.php';
 
 // Verificar si se recibió el ID
-if (!isset($_GET['id'])) {
-    echo "ID de autor no especificado.";
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    echo "ID de autor no especificado o inválido.";
     exit;
 }
 
-$id = $_GET['id'];
+$id = (int)$_GET['id'];
 
 // Obtener los datos del autor
 $sql = "SELECT * FROM TbAutor WHERE id_autor = :id";
@@ -33,19 +33,19 @@ if (!$autor) {
     <div class="container">
         <h2>Modificar Autor</h2>
         <form action="actualizar_autor.php" method="post">
-            <input type="hidden" name="id_autor" value="<?= $autor['id_autor'] ?>">
+            <input type="hidden" name="id_autor" value="<?= htmlspecialchars($autor['id_autor']) ?>">
 
             <label>Nombre:
-                <input type="text" name="nom_autor" value="<?= $autor['nom_autor'] ?>" required>
+                <input type="text" name="nom_autor" value="<?= htmlspecialchars($autor['nom_autor']) ?>" required>
             </label>
             <label>País:
-                <input type="text" name="pais_autor" value="<?= $autor['pais_autor'] ?>" required>
+                <input type="text" name="pais_autor" value="<?= htmlspecialchars($autor['pais_autor']) ?>" required>
             </label>            
             <label>Email:
-                <input type="email" name="email_autor" value="<?= $autor['email_autor'] ?>">
+                <input type="email" name="email_autor" value="<?= htmlspecialchars($autor['email_autor']) ?>">
             </label>
             <label>Idioma:
-                <input type="text" name="idioma_autor" value="<?= $autor['idioma_autor'] ?>" required>
+                <input type="text" name="idioma_autor" value="<?= htmlspecialchars($autor['idioma_autor']) ?>" required>
             </label>
             <button type="submit">Actualizar</button>
         </form>

@@ -1,8 +1,8 @@
 <?php
 require 'conexion.php';
 
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+    $id = (int)$_GET['id'];
 
     $sql = "DELETE FROM TbAutor WHERE id_autor = :id_autor";
     $stmt = $conexion->prepare($sql);
@@ -12,9 +12,9 @@ if (isset($_GET['id'])) {
         header("Location: autores.php?mensaje=eliminado");
         exit();
     } else {
-        echo "Error al eliminar el autor.";
+        echo " Error al eliminar el autor.";
     }
 } else {
-    echo "ID no válido.";
+    echo " ID no válido.";
 }
 ?>

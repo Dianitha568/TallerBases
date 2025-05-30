@@ -22,77 +22,80 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
 
-    <div class="container">
-        <div class="butoneria">
-            <a href="menu_bibliotecario.php" class="menu-button">Menu Bibliotecario</a>
-        </div>
+<div class="container">
+    <div class="butoneria">
+        <a href="menu_bibliotecario.php" class="menu-button">Menu Bibliotecario</a>
     </div>
+</div>
 
+<div class="container">
+    <h2>Gestión de Usuarios</h2>
 
-    <div class="container">
-        <h2>Gestión de Usuarios</h2>
+    <form method="get">
+        <input type="text" name="buscar" placeholder="Buscar usuario..." value="<?= htmlspecialchars($busqueda) ?>">
+        <button type="submit">Buscar</button>
+    </form>
 
-        <form method="get">
-            <input type="text" name="buscar" placeholder="Buscar usuario..." value="<?= $busqueda ?>">
-            <button type="submit">Buscar</button>
-        </form>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Email</th>
-                    <th>Teléfono</th>
-                    <th>Dirección</th>
-                    <th>Usuario</th>
-                    <th>Tipo</th>
-                    <th>Modificar</th>
-                    <th>Eliminar</th>
-                </tr>
-            </thead>
-            <tbody>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Dirección</th>
+                <th>Usuario</th>
+                <th>Tipo</th>
+                <th>Modificar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if ($usuarios): ?>
                 <?php foreach ($usuarios as $usuario): ?>
-                    <tr>
-                        <td><?= $usuario['id_usuario'] ?></td>
-                        <td><?= $usuario['nombre_usuario'] ?></td>
-                        <td><?= $usuario['email_usuario'] ?></td>
-                        <td><?= $usuario['telefono_usuario'] ?></td>
-                        <td><?= $usuario['direccion_usuario'] ?></td>
-                        <td><?= $usuario['usuario'] ?></td>
-                        <td><?= $usuario['tipo'] ?></td>
-                        <td><a href="modificar_usuario.php?id=<?= $usuario['id_usuario'] ?>">Modificar</a></td>
-                        <td><a href="eliminar_usuario.php?id=<?= $usuario['id_usuario'] ?>" onclick="return confirm('¿Eliminar este usuario?')">Eliminar</a></td>
-                    </tr>
+                <tr>
+                    <td><?= htmlspecialchars($usuario['id_usuario']) ?></td>
+                    <td><?= htmlspecialchars($usuario['nombre_usuario']) ?></td>
+                    <td><?= htmlspecialchars($usuario['email_usuario']) ?></td>
+                    <td><?= htmlspecialchars($usuario['telefono_usuario']) ?></td>
+                    <td><?= htmlspecialchars($usuario['direccion_usuario']) ?></td>
+                    <td><?= htmlspecialchars($usuario['usuario']) ?></td>
+                    <td><?= htmlspecialchars($usuario['tipo']) ?></td>
+                    <td><a href="modificar_usuario.php?id=<?= urlencode($usuario['id_usuario']) ?>">Modificar</a></td>
+                    <td><a href="eliminar_usuario.php?id=<?= urlencode($usuario['id_usuario']) ?>" onclick="return confirm('¿Eliminar este usuario?')">Eliminar</a></td>
+                </tr>
                 <?php endforeach; ?>
-            </tbody>
-        </table>
+            <?php else: ?>
+                <tr><td colspan="9">No se encontraron usuarios.</td></tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
 
-        <h3>Registrar Nuevo Usuario</h3>
-        <form action="guardar_usuario.php" method="post">
-            <label>Nombre:
-                <input type="text" name="nombre_usuario" required>
-            </label>
-            <label>Email:
-                <input type="text" name="email_usuario" required>
-            </label>
-            <label>Teléfono:
-                <input type="text" name="telefono_usuario">
-            </label>
-            <label>Dirección:
-                <input type="text" name="direccion_usuario">
-            </label>
-            <label>Usuario:
-                <input type="text" name="usuario" required>
-            </label>
-            <label>Contraseña:
-                <input type="text" name="contrasena" required>
-            </label>
-            <label>Tipo:
-                <input type="text" name="tipo" placeholder="Ej: visitante o admin" required>
-            </label>
-            <button type="submit">Guardar</button>
-        </form>
-    </div>
+    <h3>Registrar Nuevo Usuario</h3>
+    <form action="guardar_usuario.php" method="post">
+        <label>Nombre:
+            <input type="text" name="nombre_usuario" required>
+        </label>
+        <label>Email:
+            <input type="email" name="email_usuario" required>
+        </label>
+        <label>Teléfono:
+            <input type="text" name="telefono_usuario">
+        </label>
+        <label>Dirección:
+            <input type="text" name="direccion_usuario">
+        </label>
+        <label>Usuario:
+            <input type="text" name="usuario" required>
+        </label>
+        <label>Contraseña:
+            <input type="password" name="contrasena" required>
+        </label>
+        <label>Tipo:
+            <input type="text" name="tipo" placeholder="Ej: visitante o admin" required>
+        </label>
+        <button type="submit">Guardar</button>
+    </form>
+</div>
 </body>
 </html>

@@ -1,33 +1,42 @@
 <?php
 include 'conexion.php';
 
-$id = $_POST['id_autor'];
-$nombre = $_POST['nom_autor'];
-$pais = $_POST['pais_autor'];
-$fecha_nac = $_POST['f_publicacion'];
-$email = $_POST['email_autor'];
-$idioma = $_POST['idioma_autor'];
+// Validar datos obligatorios
+if (empty($_POST['id_autor']) || empty($_POST['nom_autor']) || empty($_POST['pais_autor']) || empty($_POST['idioma_autor'])) {
+    echo "Datos obligatorios faltantes.";
+    exit;
+}
+
+$id = (int)$_POST['id_autor'];
+$nombre = trim($_POST['nom_autor']);
+$pais = trim($_POST['pais_autor']);
+$email = !empty($_POST['email_autor']) ? trim($_POST['email_autor']) : null;
+$idioma = trim($_POST['idioma_autor']);
 
 $sql = "UPDATE TbAutor 
         SET nom_autor = :nombre, 
             pais_autor = :pais, 
-            f_publicacion = :fecha, 
             email_autor = :email, 
             idioma_autor = :idioma 
         WHERE id_autor = :id";
 
-$stmt = $conexion->prepare($sql);
-$resultado = $stmt->execute([
-    'nombre' => $nombre,
-    'pais' => $pais,
-    'fecha' => $fecha_nac,
-    'email' => $email,
-    'idioma' => $idioma,
-    'id' => $id
-]);
+try {
+    $stmt = $conexion->prepare($sql);
+    $resultado = $stmt->execute([
+        'nombre' => $nombre,
+        'pais' => $pais,
+        'email' => $email,
+        'idioma' => $idioma,
+        'id' => $id
+    ]);
 
-if ($resultado) {
-    echo "<script>alert('Autor actualizado correctamente'); window.location.href = 'autores.php';</script>";
-} else {
-    echo "Error al actualizar el autor.";
+    if ($resultado) {
+        header("Location: autores.php?mensaje=actualizado");
+        exit();
+    } else {
+        echo "Error al actualizar el autor.";
+    }
+} catch (PDOException $e) {
+    echo "Error al actualizar el autor: " . htmlspecialchars($e->getMessage());
 }
+?>
