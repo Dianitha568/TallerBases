@@ -12,12 +12,13 @@ $sql = "SELECT * FROM Tblibro
         ORDER BY titulo_libro";
 
 $stmt = $conexion->prepare($sql);
-$stmt->bindValue(':search', '%'.$search.'%', PDO::PARAM_STR);
+$stmt->bindValue(':search', '%' . $search . '%', PDO::PARAM_STR);
 $stmt->execute();
 $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +32,7 @@ $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
             display: flex;
             gap: 10px;
         }
-        
+
         .search-input {
             flex: 1;
             padding: 12px 15px;
@@ -39,15 +40,15 @@ $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
             border-radius: 30px;
             font-size: 16px;
             transition: all 0.3s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-        
+
         .search-input:focus {
             border-color: var(--accent);
             outline: none;
             box-shadow: 0 2px 10px rgba(67, 97, 238, 0.2);
         }
-        
+
         .search-btn {
             background: var(--primary);
             color: white;
@@ -61,12 +62,12 @@ $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
             align-items: center;
             gap: 8px;
         }
-        
+
         .search-btn:hover {
             background: var(--secondary);
             transform: translateY(-2px);
         }
-        
+
         .clear-btn {
             background: #f1f1f1;
             color: #555;
@@ -76,12 +77,13 @@ $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
             cursor: pointer;
             transition: all 0.3s;
         }
-        
+
         .clear-btn:hover {
             background: #e0e0e0;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
@@ -91,26 +93,26 @@ $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 Iniciar Sesión
             </a>
         </div>
-        
+
         <h2>Catálogo de Libros</h2>
-        
+
         <!-- Formulario de búsqueda -->
         <form method="GET" action="">
             <div class="search-container">
-                <input type="text" 
-                       name="search" 
-                       class="search-input" 
-                       placeholder="Buscar por título, editorial o ISBN..." 
-                       value="<?= htmlspecialchars($search) ?>">
+                <input type="text"
+                    name="search"
+                    class="search-input"
+                    placeholder="Buscar por título, editorial o ISBN..."
+                    value="<?= htmlspecialchars($search) ?>">
                 <button type="submit" class="search-btn">
                     <i class="fas fa-search"></i> Buscar
                 </button>
-                <?php if($search): ?>
+                <?php if ($search): ?>
                     <a href="?" class="clear-btn">Limpiar</a>
                 <?php endif; ?>
             </div>
         </form>
-        
+
         <div class="table-container">
             <table>
                 <thead>
@@ -127,22 +129,22 @@ $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <tbody>
                     <?php if ($libros): ?>
                         <?php foreach ($libros as $libro): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($libro['isbn']) ?></td>
-                            <td><?= htmlspecialchars($libro['titulo_libro']) ?></td>
-                            <td><?= htmlspecialchars($libro['formato_libro']) ?></td>
-                            <td><?= htmlspecialchars($libro['año_libro']) ?></td>
-                            <td><?= htmlspecialchars($libro['votos_libro']) ?></td>
-                            <td><?= htmlspecialchars($libro['editorial']) ?></td>
-                            <td class="<?= $libro['disponible'] ? 'disponible' : 'no-disponible' ?>">
-                                <?= $libro['disponible'] ? 'Disponible' : 'No disponible' ?>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td><?= htmlspecialchars($libro['isbn']) ?></td>
+                                <td><?= htmlspecialchars($libro['titulo_libro']) ?></td>
+                                <td><?= htmlspecialchars($libro['formato_libro']) ?></td>
+                                <td><?= htmlspecialchars($libro['año_libro']) ?></td>
+                                <td><?= htmlspecialchars($libro['votos_libro']) ?></td>
+                                <td><?= htmlspecialchars($libro['editorial']) ?></td>
+                                <td class="<?= $libro['disponible'] ? 'disponible' : 'no-disponible' ?>">
+                                    <?= $libro['disponible'] ? 'Disponible' : 'No disponible' ?>
+                                </td>
+                            </tr>
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
                             <td colspan="7" class="no-books">
-                                <?= $search ? 'No se encontraron resultados para "'.htmlspecialchars($search).'"' : 'No se encontraron libros en el catálogo' ?>
+                                <?= $search ? 'No se encontraron resultados para "' . htmlspecialchars($search) . '"' : 'No se encontraron libros en el catálogo' ?>
                             </td>
                         </tr>
                     <?php endif; ?>
@@ -151,4 +153,5 @@ $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 </body>
+
 </html>

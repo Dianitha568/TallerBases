@@ -2,22 +2,22 @@
 
 /* --- Variables CSS --- */
 :root {
-    --primary-color: #3498db; /* Azul vibrante */
+    --primary-color: #3498db; 
     --primary-color-dark: #2980b9;
-    --secondary-color: #2ecc71; /* Verde para acciones positivas */
+    --secondary-color: #2ecc71; 
     --secondary-color-dark: #27ae60;
-    --danger-color: #e74c3c; /* Rojo para acciones destructivas */
+    --danger-color: #e74c3c; 
     --danger-color-dark: #c0392b;
     --light-gray: #ecf0f1;
     --medium-gray: #bdc3c7;
     --dark-gray: #7f8c8d;
     --text-color: #34495e;
-    --background-color: #f4f7f9; /* Un fondo muy suave */
+    --background-color: #f4f7f9;
     --white: #ffffff;
     --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     --input-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
     --border-radius: 8px;
-    --font-primary: 'Poppins', sans-serif; /* Fuente moderna y legible */
+    --font-primary: 'Poppins', sans-serif; 
 }
 
 /* --- Importar Google Font --- */
@@ -39,10 +39,10 @@ body {
     line-height: 1.6;
     padding: 20px;
     display: flex;
-    flex-direction: column; /* Para alinear los contenedores verticalmente */
+    flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    overflow-x: hidden; /* Evitar scroll horizontal innecesario */
+    overflow-x: hidden; 
 }
 
 /* --- Animaciones --- */
@@ -79,22 +79,22 @@ body {
     max-width: 900px;
     margin-bottom: 30px;
     animation: fadeInUp 0.6s ease-out;
-    overflow: hidden; /* Para contener elementos flotantes o márgenes */
+    overflow: hidden;
 }
 
-.container:first-of-type { /* El contenedor del botón de menú */
-    margin-bottom: 20px; /* Menos margen para el primer contenedor */
-    background-color: transparent; /* Sin fondo para el contenedor del botón */
+.container:first-of-type { 
+    margin-bottom: 20px; 
+    background-color: transparent; 
     box-shadow: none;
     padding: 0;
-    display: flex; /* Para alinear el botón */
-    justify-content: flex-start; /* Alinea el botón a la izquierda */
+    display: flex; 
+    justify-content: flex-start; 
 }
 
 /* --- Botón de Menú --- */
 .butoneria {
     width: 100%;
-    text-align: left; /* Alinea el botón a la izquierda */
+    text-align: left; 
 }
 
 .menu-button {
@@ -145,7 +145,7 @@ form[method="get"] {
     display: flex;
     gap: 10px;
     margin-bottom: 30px;
-    animation: fadeIn 0.5s 0.2s ease-out backwards; /* Retraso para aparecer después del título */
+    animation: fadeIn 0.5s 0.2s ease-out backwards; 
 }
 
 form[method="get"] input[type="text"] {
@@ -165,7 +165,7 @@ form[method="get"] input[type="text"]:focus {
 }
 
 form[method="get"] button[type="submit"],
-.formulario button[type="submit"] { /* Estilo común para botones de submit */
+.formulario button[type="submit"] {
     padding: 12px 20px;
     background-color: var(--secondary-color);
     color: var(--white);
@@ -187,14 +187,14 @@ form[method="get"] button[type="submit"]:hover,
 
 /* --- Tabla de Autores --- */
 .tabla-autores {
-    overflow-x: auto; /* Para tablas anchas en móviles */
+    overflow-x: auto; 
     animation: fadeIn 0.5s 0.4s ease-out backwards;
 }
 
 .tabla-autores table {
     width: 100%;
-    border-collapse: separate; /* Permite border-radius en celdas si se desea */
-    border-spacing: 0; /* Elimina espacio entre celdas con border-collapse: separate */
+    border-collapse: separate; 
+    border-spacing: 0; 
     margin-top: 20px;
     text-align: left;
 }
@@ -226,8 +226,8 @@ form[method="get"] button[type="submit"]:hover,
 }
 
 .tabla-autores tbody tr:hover {
-    background-color: #e8f4fd; /* Un azul muy claro al pasar el cursor */
-    transform: scale(1.01); /* Ligero zoom al pasar el cursor */
+    background-color: #e8f4fd;
+    transform: scale(1.01);
     box-shadow: 0 5px 15px rgba(0,0,0,0.07);
 }
 .tabla-autores tbody tr:hover td:first-child {
@@ -239,7 +239,7 @@ form[method="get"] button[type="submit"]:hover,
     font-size: 0.95em;
     color: var(--text-color);
 }
-.tabla-autores td[colspan="7"] { /* Mensaje "No se encontraron autores" */
+.tabla-autores td[colspan="7"] { 
     text-align: center;
     padding: 20px;
     font-style: italic;
@@ -283,24 +283,24 @@ form[method="get"] button[type="submit"]:hover,
 
 .formulario form {
     display: grid;
-    grid-template-columns: 1fr; /* Una columna por defecto */
+    grid-template-columns: 1fr; 
     gap: 20px;
 }
 
-/* En pantallas más grandes, dos columnas */
+
 @media (min-width: 600px) {
     .formulario form {
-        grid-template-columns: 1fr 1fr; /* Dos columnas */
+        grid-template-columns: 1fr 1fr; 
         gap: 25px;
     }
-    .formulario form label:nth-child(3), /* Email */
-    .formulario form label:nth-child(4) { /* Idioma */
-        /* Pueden quedarse en una columna si se prefiere, o ajustar */
+    .formulario form label:nth-child(3), 
+    .formulario form label:nth-child(4) {
+
     }
     .formulario form button[type="submit"] {
-        grid-column: 1 / -1; /* El botón ocupa todas las columnas */
-        justify-self: center; /* Centra el botón */
-        width: auto; /* Ancho automático para el botón */
+        grid-column: 1 / -1; 
+        justify-self: center; 
+        width: auto; 
         min-width: 200px;
     }
 }
@@ -334,8 +334,7 @@ form[method="get"] button[type="submit"]:hover,
 }
 
 .formulario button[type="submit"] {
-    /* Usa el estilo común definido arriba, pero podemos añadir más si es necesario */
-    /* Ejemplo: animación de pulso al cargar o en hover */
+
 }
 .formulario button[type="submit"]:hover {
     animation: pulse 1.5s infinite;
@@ -360,7 +359,6 @@ form[method="get"] button[type="submit"]:hover,
         width: 100%;
     }
 
-    /* Forzar que la tabla tenga scroll horizontal si es muy ancha */
     .tabla-autores table,
     .tabla-autores thead,
     .tabla-autores tbody,
@@ -372,13 +370,13 @@ form[method="get"] button[type="submit"]:hover,
     .tabla-autores thead tr {
         position: absolute;
         top: -9999px;
-        left: -9999px; /* Ocultar encabezados originales */
+        left: -9999px; 
     }
     .tabla-autores tr {
         border: 1px solid var(--medium-gray);
         margin-bottom: 10px;
         border-radius: var(--border-radius);
-        animation: none; /* Quitar animación de hover en vista de tarjetas */
+        animation: none; 
     }
     .tabla-autores tr:hover {
         transform: none;
@@ -392,19 +390,18 @@ form[method="get"] button[type="submit"]:hover,
         border: none;
         border-bottom: 1px solid var(--light-gray);
         position: relative;
-        padding-left: 50%; /* Espacio para la etiqueta */
-        text-align: right; /* Alinea el valor a la derecha */
+        padding-left: 50%; 
+        text-align: right; 
     }
     .tabla-autores td:before {
-        content: attr(data-label); /* Usaremos un atributo data-label */
+        content: attr(data-label); 
         position: absolute;
         left: 10px;
-        width: calc(50% - 20px); /* Ancho de la etiqueta */
+        width: calc(50% - 20px); 
         padding-right: 10px;
         white-space: nowrap;
         font-weight: bold;
-        text-align: left; /* Alinea la etiqueta a la izquierda */
+        text-align: left; 
     }
 
-    /* Para el formulario de agregar en pantallas pequeñas, ya es una columna */
 }

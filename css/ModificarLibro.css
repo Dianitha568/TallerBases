@@ -203,10 +203,10 @@ body {
 
 
 /* --- Responsive --- */
-@media (max-width: 640px) { /* Ajustes para pantallas más pequeñas */
+@media (max-width: 640px) { 
     .container {
         width: 95%;
-        padding: 25px 20px; /* Menos padding horizontal */
+        padding: 25px 20px; 
         margin-top: 15px;
     }
 
@@ -216,13 +216,13 @@ body {
     }
 
     .container form {
-        gap: 18px; /* Reducir un poco el espacio */
+        gap: 18px; 
     }
 }
 
 @media (max-width: 480px) { /* Ajustes más finos para móviles pequeños */
     body {
-        padding: 10px; /* Menos padding general en el body */
+        padding: 10px; 
     }
     .container {
         padding: 20px 15px;

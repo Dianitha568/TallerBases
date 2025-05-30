@@ -1,25 +1,23 @@
-/* /BASESDEDATOS/TallerBases-master/css/ModificarLibro.css
-   (Recomendado renombrar a ModificarAutor.css o similar)
-*/
+/* /BASESDEDATOS/TallerBases-master/css/ModificarLibro.css*/
 
-/* --- Variables CSS (Asegúrate de que estas sean consistentes si este archivo se comparte o si tienes un archivo de variables global) --- */
+
 :root {
-    --primary-color: #3498db;       /* Azul vibrante */
+    --primary-color: #3498db;       
     --primary-color-dark: #2980b9;
-    --secondary-color: #2ecc71;     /* Verde para acciones positivas/actualizar */
+    --secondary-color: #2ecc71;     
     --secondary-color-dark: #27ae60;
-    --accent-color: #f39c12;        /* Naranja para acentos */
-    --danger-color: #e74c3c;        /* Rojo */
+    --accent-color: #f39c12;        
+    --danger-color: #e74c3c;       
     --light-gray: #ecf0f1;
     --medium-gray: #bdc3c7;
-    --dark-gray: #7f8c8d;          /* Para el enlace "Volver" */
+    --dark-gray: #7f8c8d;          
     --text-color: #34495e;
-    --background-color: #f4f7f9;    /* Un fondo muy suave */
+    --background-color: #f4f7f9;    
     --white: #ffffff;
     --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     --input-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
     --border-radius: 8px;
-    --font-primary: 'Poppins', sans-serif; /* Fuente moderna y legible */
+    --font-primary: 'Poppins', sans-serif; 
 }
 
 /* --- Importar Google Font --- */
@@ -39,15 +37,15 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.6;
-    padding: 20px; /* Espacio alrededor del contenedor */
+    padding: 20px; 
     display: flex;
-    justify-content: center; /* Centra el .container horizontalmente */
-    align-items: flex-start; /* Alinea el .container al inicio verticalmente */
+    justify-content: center; 
+    align-items: flex-start; 
     min-height: 100vh;
-    overflow-x: hidden; /* Previene scroll horizontal innecesario */
+    overflow-x: hidden; 
 }
 
-/* --- Animaciones (reutilizadas) --- */
+/* --- Animaciones--- */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -64,8 +62,8 @@ body {
     }
 }
 
-@keyframes pulse { /* Animación para el botón de actualizar */
-    0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.4); } /* Verde (secondary-color) */
+@keyframes pulse { 
+    0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.4); } 
     70% { box-shadow: 0 0 0 10px rgba(46, 204, 113, 0); }
     100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
 }
@@ -77,11 +75,11 @@ body {
     border-radius: var(--border-radius);
     box-shadow: var(--card-shadow);
     width: 90%;
-    max-width: 600px; /* Un buen ancho para formularios */
-    margin-top: 20px; /* Espacio desde arriba */
-    margin-bottom: 20px; /* Espacio hasta abajo */
+    max-width: 600px;
+    margin-top: 20px; 
+    margin-bottom: 20px; 
     animation: fadeInUp 0.6s ease-out;
-    text-align: center; /* Centra el título y el enlace "Volver" */
+    text-align: center; 
 }
 
 /* --- Título dentro del Contenedor --- */
@@ -109,42 +107,42 @@ body {
 /* --- Formulario --- */
 .container form {
     display: grid;
-    grid-template-columns: 1fr; /* Una columna por defecto, ideal para móviles y formularios no muy complejos */
-    gap: 22px; /* Espacio entre los elementos del formulario (labels/inputs) */
-    text-align: left; /* Alinea las etiquetas a la izquierda */
-    margin-bottom: 30px; /* Espacio antes del enlace "Volver" */
+    grid-template-columns: 1fr; 
+    gap: 22px; 
+    text-align: left; 
+    margin-bottom: 30px; 
 }
 
 .container form label {
-    display: block; /* La etiqueta ocupa su propia línea, el input irá debajo */
+    display: block; 
     font-weight: 500;
     font-size: 0.95em;
-    color: var(--primary-color-dark); /* Un azul más oscuro para las etiquetas */
+    color: var(--primary-color-dark); 
 }
 
 .container form input[type="text"],
-.container form input[type="number"], /* Incluido por si acaso, aunque este form usa email */
+.container form input[type="number"], 
 .container form input[type="email"] {
     width: 100%;
     padding: 12px 15px;
-    margin-top: 6px; /* Pequeño espacio entre la etiqueta y el input */
+    margin-top: 6px; 
     border: 1px solid var(--medium-gray);
     border-radius: var(--border-radius);
     font-size: 1em;
     font-family: var(--font-primary);
     transition: all 0.3s ease;
-    box-shadow: var(--input-shadow); /* Sombra sutil para los inputs */
+    box-shadow: var(--input-shadow); 
 }
 
 .container form input[type="text"]:focus,
 .container form input[type="number"]:focus,
 .container form input[type="email"]:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25); /* Resplandor al enfocar */
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25); 
     outline: none;
 }
 
-/* Opcional: Quitar las flechas de los input number (si se usaran) */
+/*Quitar las flechas de los input number*/
 .container form input[type="number"]::-webkit-outer-spin-button,
 .container form input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -154,9 +152,9 @@ body {
 
 /* --- Botón de Actualizar --- */
 .container form button[type="submit"] {
-    width: 100%; /* El botón ocupa todo el ancho disponible en la grid */
+    width: 100%; 
     padding: 12px 20px;
-    background-color: var(--secondary-color); /* Verde para "Actualizar" */
+    background-color: var(--secondary-color); 
     color: var(--white);
     border: none;
     border-radius: var(--border-radius);
@@ -167,24 +165,24 @@ body {
     letter-spacing: 0.5px;
     transition: all 0.3s ease;
     box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3);
-    margin-top: 10px; /* Espacio adicional sobre el botón */
+    margin-top: 10px; 
 }
 
 .container form button[type="submit"]:hover,
 .container form button[type="submit"]:focus {
     background-color: var(--secondary-color-dark);
-    transform: translateY(-2px); /* Ligero levantamiento */
+    transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(46, 204, 113, 0.4);
     outline: none;
-    animation: pulse 1.5s infinite; /* Efecto de pulso al interactuar */
+    animation: pulse 1.5s infinite;
 }
 
 /* --- Enlace "Volver a la lista" --- */
-.container > a { /* Selector para el enlace que es hijo directo del .container */
+.container > a { 
     display: inline-block;
-    margin-top: 10px; /* Espacio desde el <br> o el formulario */
+    margin-top: 10px; 
     padding: 10px 20px;
-    background-color: var(--dark-gray); /* Un gris neutro */
+    background-color: var(--dark-gray); 
     color: var(--white);
     text-decoration: none;
     border-radius: var(--border-radius);
@@ -195,22 +193,22 @@ body {
 
 .container > a:hover,
 .container > a:focus {
-    background-color: var(--text-color); /* Un gris un poco más oscuro */
+    background-color: var(--text-color);
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     outline: none;
 }
-.container > a::before { /* Añade una flecha al enlace "Volver" */
+.container > a::before {
     content: "← ";
     font-weight: bold;
 }
 
 
 /* --- Responsive --- */
-@media (max-width: 640px) { /* Ajustes para pantallas más pequeñas */
+@media (max-width: 640px) { 
     .container {
         width: 95%;
-        padding: 25px 20px; /* Menos padding horizontal */
+        padding: 25px 20px; 
         margin-top: 15px;
     }
 
@@ -220,13 +218,13 @@ body {
     }
 
     .container form {
-        gap: 18px; /* Reducir un poco el espacio */
+        gap: 18px;
     }
 }
 
-@media (max-width: 480px) { /* Ajustes más finos para móviles pequeños */
+@media (max-width: 480px) { 
     body {
-        padding: 10px; /* Menos padding general en el body */
+        padding: 10px;
     }
     .container {
         padding: 20px 15px;
@@ -237,7 +235,7 @@ body {
     }
 
     .container form input[type="text"],
-    .container form input[type="email"] { /* Aseguramos que el input email también se afecte */
+    .container form input[type="email"] { 
         padding: 10px 12px;
         font-size: 0.95em;
     }

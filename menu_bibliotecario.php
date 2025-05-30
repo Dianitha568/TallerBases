@@ -19,7 +19,7 @@
         <a href="usuarios.php" class="menu-button">Gestion Usuario</a>
         <a href="prestamos.php" class="menu-button">Gestion Préstamo</a>
         <a href="reportes.php" class="menu-button">Reportes</a>
-        <a href="login.php" class="menu-button">Cerrar Sesión</a>
+        <a href="index.php" class="menu-button">Cerrar Sesión</a>
     </div>
 
 
