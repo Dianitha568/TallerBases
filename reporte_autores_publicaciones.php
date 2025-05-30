@@ -16,8 +16,11 @@ $autores = $resultado->fetchAll(PDO::FETCH_ASSOC);
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/BASESDEDATOS/TallerBases-master/css/AutoresPublicaciones.css">
     <title>Autores con Más Publicaciones</title>
 </head>
+<div class="container">
 <body>
     <h2>✍ Autores con Más Publicaciones</h2>
     <table border="1">
@@ -34,5 +37,6 @@ $autores = $resultado->fetchAll(PDO::FETCH_ASSOC);
     </table>
     <br>
     <a href="reportes.php">← Volver a Reportes</a>
+    </div>
 </body>
 </html>

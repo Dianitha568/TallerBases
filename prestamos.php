@@ -40,8 +40,8 @@ $usuarios = $stmt_usuarios->fetchAll(PDO::FETCH_ASSOC);
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/BASESDEDATOS/TallerBases-master/css/Prestamo.css">
     <title>Gestión de Préstamos</title>
-    <link rel="stylesheet" href="css/styles_prestamo.css">
 </head>
 <body>
 
@@ -75,19 +75,21 @@ $usuarios = $stmt_usuarios->fetchAll(PDO::FETCH_ASSOC);
     <tbody>
     <?php if ($prestamos): ?>
         <?php foreach ($prestamos as $p): ?>
+            
             <tr>
-                <td><?= htmlspecialchars($p['id_prestamo']) ?></td>
-                <td><?= htmlspecialchars($p['isbn']) ?></td>
-                <td><?= htmlspecialchars($p['titulo_libro']) ?></td>
-                <td><?= htmlspecialchars($p['nom_autor']) ?></td>
-                <td><?= htmlspecialchars($p['nombre_usuario']) ?></td>
-                <td><?= htmlspecialchars($p['fecha_prestamo']) ?></td>
-                <td><?= htmlspecialchars($p['fecha_devolucion']) ?></td>
-                <td class="actions">
-                    <a class="edit-btn" href="editar_prestamo.php?id=<?= urlencode($p['id_prestamo']) ?>">✏ Editar</a>
-                    <a class="delete-btn" href="eliminar_prestamo.php?id=<?= urlencode($p['id_prestamo']) ?>" onclick="return confirm('¿Seguro que quieres eliminar este préstamo?')">🗑 Eliminar</a>
+                <td data-label="ID"><?= htmlspecialchars($p['id_prestamo']) ?></td>
+                <td data-label="ISBN"><?= htmlspecialchars($p['isbn']) ?></td>
+                <td data-label="Título"><?= htmlspecialchars($p['titulo_libro']) ?></td>
+                <td data-label="Autor"><?= htmlspecialchars($p['nom_autor']) ?></td>
+                <td data-label="Usuario"><?= htmlspecialchars($p['nombre_usuario']) ?></td>
+                <td data-label="F. Préstamo"><?= htmlspecialchars($p['fecha_prestamo']) ?></td>
+                <td data-label="F. Devolución"><?= htmlspecialchars($p['fecha_devolucion']) ?></td>
+                <td data-label="Acciones" class="actions">
+                    <a class="edit-btn" href="editar_prestamo.php?id=<?= urlencode($p['id_prestamo']) ?>">✏️ Editar</a>
+                    <a class="delete-btn" href="eliminar_prestamo.php?id=<?= urlencode($p['id_prestamo']) ?>" onclick="return confirm('¿Seguro que quieres eliminar este préstamo?')">🗑️ Eliminar</a>
                 </td>
             </tr>
+
         <?php endforeach; ?>
     <?php else: ?>
         <tr><td colspan="8">No hay préstamos registrados.</td></tr>

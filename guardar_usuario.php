@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $telefono = trim($_POST['telefono_usuario']);
     $direccion = trim($_POST['direccion_usuario']);
     $usuario = trim($_POST['usuario']);
-    $contrasena = password_hash(trim($_POST['contrasena']), PASSWORD_DEFAULT);  // hasheo seguro
+    $contrasena = trim($_POST['contrasena']);  // hasheo seguro
     $tipo = trim($_POST['tipo']);
 
     $sql = "INSERT INTO TbUsuario (nombre_usuario, email_usuario, telefono_usuario, direccion_usuario, fecha_registro, usuario, contrasena, tipo)

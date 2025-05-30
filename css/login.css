@@ -1,0 +1,112 @@
+/* Estilos generales */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+}
+
+/* Contenedor del login */
+.login-container {
+    background-color: white;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    text-align: center;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Títulos */
+.login-container h1 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.8rem;
+    color: #4a4a4a;
+}
+
+.login-container h2 {
+    margin: 0 0 2rem 0;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #6e8efb;
+}
+
+/* Formulario */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+/* Etiquetas */
+label {
+    text-align: left;
+    font-size: 0.9rem;
+    margin-bottom: -10px;
+    color: #555;
+    font-weight: 500;
+}
+
+/* Campos de entrada */
+input[type="text"],
+input[type="password"] {
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #6e8efb;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(110, 142, 251, 0.2);
+}
+
+/* Botón de submit */
+input[type="submit"] {
+    background: linear-gradient(to right, #6e8efb, #a777e3);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+input[type="submit"]:hover {
+    background: linear-gradient(to right, #5a7df4, #9a6ad8);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+input[type="submit"]:active {
+    transform: translateY(0);
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Efecto para los campos al pasar el mouse */
+input[type="text"]:hover,
+input[type="password"]:hover {
+    border-color: #a777e3;
+}

@@ -18,7 +18,7 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <title>Gestión de Usuarios</title>
-    <link rel="stylesheet" href="../css/styles_autor.css">
+    <link rel="stylesheet" href="/BASESDEDATOS/TallerBases-master/css/GestionUsuario.css">
 </head>
 <body>
 

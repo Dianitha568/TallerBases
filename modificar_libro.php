@@ -26,7 +26,7 @@ if (!$libro) {
 <head>
     <meta charset="UTF-8">
     <title>Modificar Libro</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/BASESDEDATOS/TallerBases-master/css/ModificarLibro.css">
 </head>
 <body>
     <div class="container">

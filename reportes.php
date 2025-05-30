@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Reportes</title>
-    <link rel="stylesheet" href="css/styles_reportes.css">
+    <link rel="stylesheet" href="/BASESDEDATOS/TallerBases-master/css/reportes.css">
 </head>
 <body>
 

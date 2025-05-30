@@ -16,7 +16,8 @@ $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <title>Libros</title>
-    <link rel="stylesheet" href="css/styles_autor.css">
+    <link rel="stylesheet" href="/BASESDEDATOS/TallerBases-master/css/Libros.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 

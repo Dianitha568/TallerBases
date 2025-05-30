@@ -15,9 +15,12 @@ $prestamos = $resultado->fetchAll(PDO::FETCH_ASSOC);
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/BASESDEDATOS/TallerBases-master/css/PrestamosVencidos.css">
     <title>Préstamos Vencidos</title>
 </head>
 <body>
+    <div class="container">
     <h2>📅 Préstamos Vencidos</h2>
     <table border="1">
         <tr>
@@ -39,5 +42,6 @@ $prestamos = $resultado->fetchAll(PDO::FETCH_ASSOC);
     </table>
     <br>
     <a href="reportes.php">← Volver a Reportes</a>
+    </div>
 </body>
 </html>

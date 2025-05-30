@@ -1,0 +1,448 @@
+/* --- Variables CSS --- */
+:root {
+    --primary-color: #3498db; /* Azul vibrante */
+    --primary-color-dark: #2980b9;
+    --secondary-color: #2ecc71; /* Verde para acciones positivas */
+    --secondary-color-dark: #27ae60;
+    --accent-color: #f39c12; /* Naranja para acentos, editar */
+    --accent-color-dark: #e67e22;
+    --danger-color: #e74c3c; /* Rojo para acciones destructivas */
+    --danger-color-dark: #c0392b;
+    --light-gray: #ecf0f1;
+    --medium-gray: #bdc3c7;
+    --dark-gray: #7f8c8d;
+    --text-color: #34495e;
+    --background-color: #f4f7f9;
+    --white: #ffffff;
+    --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    --input-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+    --border-radius: 8px;
+    --font-primary: 'Poppins', sans-serif;
+}
+
+/* --- Importar Google Font --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* --- Reset Básico y Estilos Globales --- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* --- Animaciones --- */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(var(--rgb-secondary-color, 46, 204, 113), 0.4); } /* Usa variable o fallback */
+    70% { box-shadow: 0 0 0 10px rgba(var(--rgb-secondary-color, 46, 204, 113), 0); }
+    100% { box-shadow: 0 0 0 0 rgba(var(--rgb-secondary-color, 46, 204, 113), 0); }
+}
+
+/* --- Contenedor (para el botón de menú) --- */
+.container {
+    background-color: var(--white);
+    padding: 25px 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    width: 90%;
+    max-width: 1000px; /* Ligeramente más ancho para tablas potencialmente grandes */
+    margin-bottom: 30px;
+    animation: fadeInUp 0.6s ease-out;
+    overflow: hidden;
+}
+
+/* Estilo específico para el contenedor del botón de menú si solo hay uno */
+body > .container:first-of-type:has(.butoneria) {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+    max-width: 1000px; /* Coincidir con otros contenedores */
+}
+
+/* --- Títulos Principales (h1, h2) --- */
+h1, h2 {
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    font-weight: 600;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+    width: 90%;
+    max-width: 1000px; /* Consistencia con contenedores */
+    margin-left: auto; /* Centrado */
+    margin-right: auto; /* Centrado */
+    animation: fadeInUp 0.5s ease-out;
+}
+h1 { font-size: 2.2em; margin-top: 10px; }
+h2 { font-size: 1.8em; }
+
+h1::after, h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 3.5px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+h2::after { width: 60px; height: 3px; }
+
+
+/* --- Botón de Menú --- */
+.butoneria {
+    width: 100%;
+    text-align: left;
+}
+.menu-button {
+    display: inline-block;
+    background-image: linear-gradient(45deg, var(--primary-color), var(--primary-color-dark));
+    color: var(--white);
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+}
+.menu-button:hover, .menu-button:focus {
+    background-image: linear-gradient(45deg, var(--primary-color-dark), var(--primary-color));
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
+    outline: none;
+}
+
+/* --- Barra de Búsqueda y Formulario de Registro --- */
+form[method="get"],
+form[action="registrar_prestamo.php"] {
+    display: flex; /* Simplificado para búsqueda, grid para registro */
+    gap: 10px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    width: 90%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 0.5s 0.2s ease-out backwards;
+}
+
+form[action="registrar_prestamo.php"] {
+    display: grid;
+    grid-template-columns: 1fr; /* Por defecto una columna */
+    gap: 15px; /* Espacio entre elementos del formulario */
+}
+
+/* En pantallas más grandes, dos columnas para el formulario de registro */
+@media (min-width: 768px) {
+    form[action="registrar_prestamo.php"] {
+        grid-template-columns: 1fr 1fr; /* Dos columnas */
+        gap: 20px;
+    }
+    form[action="registrar_prestamo.php"] label,
+    form[action="registrar_prestamo.php"] input,
+    form[action="registrar_prestamo.php"] datalist {
+        /* Pueden necesitar ajustes para que los labels queden encima o al lado */
+    }
+    form[action="registrar_prestamo.php"] button[type="submit"] {
+        grid-column: 1 / -1; /* El botón ocupa todas las columnas */
+        justify-self: center; /* Centra el botón */
+        min-width: 250px;
+    }
+}
+
+
+form input[type="text"],
+form input[type="date"],
+form input[list] { /* Estilo para inputs, incluyendo los que usan datalist */
+    flex-grow: 1; /* Para la barra de búsqueda */
+    width: 100%; /* Para el formulario de registro */
+    padding: 12px 15px;
+    border: 1px solid var(--medium-gray);
+    border-radius: var(--border-radius);
+    font-size: 1em;
+    font-family: var(--font-primary);
+    transition: all 0.3s ease;
+    box-shadow: var(--input-shadow);
+}
+
+form input[type="text"]:focus,
+form input[type="date"]:focus,
+form input[list]:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+    outline: none;
+}
+
+form label {
+    display: block; /* Hace que el input se coloque debajo */
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: var(--primary-color-dark);
+    font-size: 0.95em;
+}
+
+form button[type="submit"] {
+    padding: 12px 20px;
+    background-color: var(--secondary-color);
+    color: var(--white);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3);
+    min-width: 120px; /* Ancho mínimo para el botón de búsqueda */
+}
+
+form button[type="submit"]:hover {
+    background-color: var(--secondary-color-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(46, 204, 113, 0.4);
+}
+form[action="registrar_prestamo.php"] button[type="submit"]:hover {
+    animation: pulse 1.5s infinite;
+}
+
+
+/* --- Tabla de Préstamos --- */
+/* Contenedor de la tabla si no usas .container en HTML */
+body > table {
+    display: block; /* Necesario para aplicar max-width y margin en la tabla directamente */
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto 30px auto;
+    background-color: var(--white);
+    padding: 20px; /* Añade padding si la tabla no está en un .container */
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    overflow-x: auto; /* Para tablas anchas en móviles ANTES de que se aplique el modo tarjeta */
+    animation: fadeInUp 0.5s 0.4s ease-out backwards;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    text-align: left;
+}
+
+table th,
+table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--light-gray);
+    vertical-align: middle;
+}
+
+table th {
+    background-color: var(--primary-color);
+    color: var(--white);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.9em;
+}
+
+table th:first-child { border-top-left-radius: var(--border-radius); }
+table th:last-child { border-top-right-radius: var(--border-radius); }
+
+table tbody tr {
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+table tbody tr:not(:has(td[colspan="8"])):hover { /* No aplicar hover a "No hay préstamos" */
+    background-color: #e8f4fd;
+    transform: scale(1.005); /* Sutil */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+}
+table tbody tr:hover td:first-child {
+    border-left: 3px solid var(--primary-color); /* Solo si no es una celda de "No hay préstamos" */
+}
+table tbody tr td[colspan="8"] {
+    border-left: none !important; /* Evita el borde de hover en esta celda */
+}
+
+
+table td {
+    font-size: 0.95em;
+    color: var(--text-color);
+}
+table td[colspan="8"] { /* Mensaje "No hay préstamos" */
+    text-align: center;
+    padding: 25px;
+    font-style: italic;
+    color: var(--dark-gray);
+    background-color: var(--light-gray); /* Fondo distintivo */
+    border-radius: var(--border-radius); /* Redondear si es la única fila */
+}
+
+/* Estilo para los enlaces de Acciones en la tabla */
+table td.actions {
+    white-space: nowrap; /* Evita que los botones se partan en dos líneas */
+    text-align: center; /* Centra los botones dentro de la celda */
+}
+table td.actions a {
+    display: inline-block;
+    padding: 7px 14px;
+    margin: 3px;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    color: var(--white);
+    font-size: 0.88em;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    min-width: 90px; /* Ancho mínimo para botones */
+}
+
+table td.actions a.edit-btn {
+    background-color: var(--accent-color);
+}
+table td.actions a.edit-btn:hover {
+    background-color: var(--accent-color-dark);
+    transform: translateY(-1px) scale(1.05);
+}
+
+table td.actions a.delete-btn {
+    background-color: var(--danger-color);
+}
+table td.actions a.delete-btn:hover {
+    background-color: var(--danger-color-dark);
+    transform: translateY(-1px) scale(1.05);
+}
+
+/* --- Responsive --- */
+@media (max-width: 992px) { /* Ajustes para tablets */
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.6em; }
+
+    /* Para tablas anchas, el scroll horizontal ya está activo */
+}
+
+
+@media (max-width: 768px) {
+    /* Apilar elementos de búsqueda y formulario de registro si no están en dos columnas */
+    form[method="get"] {
+        flex-direction: column;
+    }
+    form[method="get"] button[type="submit"] {
+        width: 100%;
+    }
+    /* El formulario de registro ya se adapta a una columna por defecto */
+
+    /* --- Tabla Responsiva modo Tarjeta --- */
+    /* Contenedor de la tabla si no usas .container en HTML */
+    body > table {
+        padding: 0; /* Quitar padding para que las tarjetas se vean bien */
+        box-shadow: none;
+        background-color: transparent;
+    }
+
+    table thead { display: none; /* Ocultar encabezados originales */ }
+    table tr {
+        display: block;
+        background-color: var(--white);
+        border-radius: var(--border-radius);
+        box-shadow: var(--card-shadow);
+        margin-bottom: 20px;
+        padding: 15px;
+        animation: none; /* Quitar animación de hover en vista de tarjetas */
+    }
+    table tr:hover {
+        transform: none;
+        box-shadow: var(--card-shadow); /* Mantener sombra original */
+    }
+    table tbody tr:hover td:first-child {
+        border-left: none;
+    }
+
+    table td {
+        display: block;
+        border-bottom: 1px dashed var(--light-gray); /* Separador entre "campos" de la tarjeta */
+        padding: 10px 5px 10px 45%; /* Espacio para la etiqueta */
+        position: relative;
+        text-align: right; /* Alinea el valor a la derecha */
+        font-size: 0.9em;
+    }
+    table td:last-child { border-bottom: none; }
+    table td:before {
+        content: attr(data-label); /* Usaremos un atributo data-label */
+        position: absolute;
+        left: 10px;
+        width: calc(45% - 20px); /* Ancho de la etiqueta */
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+        text-align: left;
+        color: var(--primary-color);
+    }
+    table td.actions { /* Ajustar botones de acciones en modo tarjeta */
+        text-align: center;
+        padding-left: 5px; /* Resetear padding para acciones */
+    }
+    table td.actions a {
+        margin: 5px;
+    }
+    table td[colspan="8"] { /* Mensaje "No hay préstamos" en modo tarjeta */
+        text-align: center;
+        padding: 20px;
+        font-style: italic;
+        color: var(--dark-gray);
+    }
+     table td[colspan="8"]::before { display: none; } /* No mostrar data-label para colspan */
+
+}
+
+@media (max-width: 480px) { /* Ajustes finos para móviles muy pequeños */
+    body { padding: 10px; }
+    h1 { font-size: 1.8em; }
+    h2 { font-size: 1.5em; }
+    .container,
+    form[method="get"],
+    form[action="registrar_prestamo.php"],
+    body > table { /* Si la tabla no está en .container */
+        width: 95%;
+        padding: 15px;
+    }
+    form input[type="text"],
+    form input[type="date"],
+    form input[list],
+    form button[type="submit"] {
+        font-size: 0.95em;
+        padding: 10px 12px;
+    }
+    table td.actions a {
+        padding: 6px 10px;
+        font-size: 0.8em;
+    }
+}

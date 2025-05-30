@@ -24,7 +24,7 @@ if (!$usuario) {
 <head>
     <meta charset="UTF-8">
     <title>Modificar Usuario</title>
-    <link rel="stylesheet" href="../css/styles_autor.css">
+    <link rel="stylesheet" href="/BASESDEDATOS/TallerBases-master/css/ModificarUsuario.css">
 </head>
 <body>
     <div class="container">
